@@ -127,7 +127,7 @@ class Nested implements Strategy
         }
         if (isset($config['root']) && !$meta->hasAssociation($config['root']) && !isset($config['rootIdentifierMethod'])) {
             $meta->getReflectionProperty($config['root'])->setValue($node, 0);
-        } else if (isset($config['rootIdentifierMethod']) && is_null($meta->getReflectionProperty($config['root'])->getValue($node))) {
+        } elseif (isset($config['rootIdentifierMethod']) && is_null($meta->getReflectionProperty($config['root'])->getValue($node))) {
             $meta->getReflectionProperty($config['root'])->setValue($node, 0);
         }
     }
@@ -356,8 +356,7 @@ class Nested implements Strategy
 
                         $em->getUnitOfWork()->recomputeSingleEntityChangeSet($meta, $node);
                         $start = $parentLeft;
-                    }
-                    break;
+                    }                    break;
 
                 case self::NEXT_SIBLING:
                     if (property_exists($node, 'sibling')) {
@@ -376,8 +375,7 @@ class Nested implements Strategy
 
                         $em->getUnitOfWork()->recomputeSingleEntityChangeSet($meta, $node);
                         $start = $parentRight + 1;
-                    }
-                    break;
+                    }                    break;
 
                 case self::LAST_CHILD:
                     $start = $parentRight;
@@ -479,7 +477,6 @@ class Nested implements Strategy
                 $newRoot = $wrapped->getIdentifier();
             }
         }
-
         $diff = $start - $left;
 
         if (!$isNewNode) {

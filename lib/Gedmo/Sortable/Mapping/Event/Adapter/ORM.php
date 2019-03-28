@@ -82,7 +82,7 @@ final class ORM extends BaseAdapterORM implements SortableAdapter
                     $params['excluded'] = $excludedIds;
                     $dql .= " AND n.{$meta->identifier[0]} NOT IN (:excluded)";
                 }
-            } else if (count($meta->identifier) > 1) {
+            } elseif (count($meta->identifier) > 1) {
                 foreach ($delta['exclude'] as $entity) {
                     $j = 0;
                     $dql .= " AND NOT (";
